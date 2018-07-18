@@ -5,18 +5,18 @@ import java.util.List;
 import com.briup.app02.bean.Answer;
 
 public interface AnswerMapper {
-	//查询所有学校信息
+	//查询所有问卷答案信息
 	List<Answer> findAll();
 		
-	//通过id查询学校信息
+	//通过id查询问卷答案信息
 	Answer findById(long id);
 			
-	//保存学校信息
+	//保存问卷答案信息
 	void save(Answer answer);
 			
-	//修改学校信息
+	//修改问卷答案信息
 	void update(Answer answer);
 			
-	//删除学校信息
+	//删除问卷答案信息
 	void deleteById(long id);
 }

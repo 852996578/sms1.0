@@ -12,27 +12,29 @@ import com.briup.app02.bean.Qq;
 import com.briup.app02.service.IQqService;
 import com.briup.app02.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+
+@Api(description="问题与问卷桥梁的相关接口")
 @RestController
 @RequestMapping("/qq")
 public class QqController {
-	//注入studentService的实例
+	// 注入studentService的实例
 	@Autowired
 	private IQqService qqService;
-	
+
 	@PostMapping("saveQq")
-	public MsgResponse saveQq(Qq qq){
+	public MsgResponse saveQq(Qq qq) {
 		try {
 			qqService.save(qq);
-			return MsgResponse.success("添加学生信息成功！", null);
+			return MsgResponse.success("添加成功！", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	
+
 	@PostMapping("updateQq")
-	public MsgResponse updateQq(Qq qq){
+	public MsgResponse updateQq(Qq qq) {
 		try {
 			qqService.update(qq);
 			return MsgResponse.success("修改成功！", null);
@@ -40,11 +42,11 @@ public class QqController {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-		
-	}	
-	
+
+	}
+
 	@GetMapping("deleteQqById")
-	public MsgResponse deleteQqById(long id){
+	public MsgResponse deleteQqById(long id) {
 		try {
 			// 调用service层代码删除学生信息
 			qqService.deleteById(id);
@@ -56,28 +58,29 @@ public class QqController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	//http://127.0.0.1:8080/student/findAllStudent
+
+	// http://127.0.0.1:8080/student/findAllStudent
 	@GetMapping("findAllQq")
-	public List<Qq> findAllQq(){
-		
+	public MsgResponse findAllQq() {
+
 		try {
 			List<Qq> list = qqService.findAll();
-			return list;
+			return MsgResponse.success("查询成功！", list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			return MsgResponse.error(e.getMessage());
 		}
 	}
+
 	@GetMapping("findQqById")
-	public Qq findQqById(long id){
+	public MsgResponse findQqById(long id) {
 		try {
 			Qq qq = qqService.findById(id);
-			return qq;
+			return MsgResponse.success("查询成功！", qq);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return MsgResponse.error(e.getMessage());
 		}
 	}
 }

@@ -12,27 +12,29 @@ import com.briup.app02.bean.School;
 import com.briup.app02.service.ISchoolService;
 import com.briup.app02.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+
+@Api(description="学校相关接口")
 @RestController
 @RequestMapping("/school")
 public class SchoolController {
-	//注入schoolService的实例
+	// 注入schoolService的实例
 	@Autowired
 	private ISchoolService schoolService;
-	
+
 	@PostMapping("saveSchool")
-	public MsgResponse saveSchool(School school){
+	public MsgResponse saveSchool(School school) {
 		try {
 			schoolService.save(school);
-			return MsgResponse.success("添加学生信息成功！", null);
+			return MsgResponse.success("添加学校信息成功！", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	
+
 	@PostMapping("updateSchool")
-	public MsgResponse updateSchool(School school){
+	public MsgResponse updateSchool(School school) {
 		try {
 			schoolService.update(school);
 			return MsgResponse.success("修改成功！", null);
@@ -40,44 +42,45 @@ public class SchoolController {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-		
-	}	
-	
+
+	}
+
 	@GetMapping("deleteSchoolById")
-	public MsgResponse deleteSchoolById(long id){
+	public MsgResponse deleteSchoolById(long id) {
 		try {
 			// 调用service层代码删除学生信息
 			schoolService.deleteById(id);
 			// 如果删除成功返回成功信息
-			return MsgResponse.success("删除成功！", null);
+			return MsgResponse.success("删除学校信息成功！", null);
 		} catch (Exception e) {
 			// 先打印错误信息，让后台开发者知道问题所在；返回错误信息，让前端开发者知道错误所在
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	//http://127.0.0.1:8080/student/findAllStudent
+
+	// http://127.0.0.1:8080/student/findAllStudent
 	@GetMapping("findAllSchool")
-	public List<School> findAllSchool(){
-		
+	public MsgResponse findAllSchool() {
+
 		try {
 			List<School> list = schoolService.findAll();
-			return list;
+			return MsgResponse.success("查询学校信息成功！", list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			return MsgResponse.error(e.getMessage());
 		}
 	}
+
 	@GetMapping("findSchoolById")
-	public School findSchoolById(long id){
+	public MsgResponse findSchoolById(long id) {
 		try {
 			School school = schoolService.findById(id);
-			return school;
+			return MsgResponse.success("查询学校信息成功！", school);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return MsgResponse.error(e.getMessage());
 		}
 	}
 }

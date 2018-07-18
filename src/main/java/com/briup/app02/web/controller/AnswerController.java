@@ -12,6 +12,9 @@ import com.briup.app02.bean.Answer;
 import com.briup.app02.service.IAnswerService;
 import com.briup.app02.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+
+@Api(description="答案相关接口")
 @RestController
 @RequestMapping("/answer")
 public class AnswerController {
@@ -23,7 +26,7 @@ public class AnswerController {
 	public MsgResponse saveAnswer(Answer answer){
 		try {
 			answerService.save(answer);
-			return MsgResponse.success("添加学生信息成功！", null);
+			return MsgResponse.success("添加问卷答案成功！", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
@@ -35,7 +38,7 @@ public class AnswerController {
 	public MsgResponse updateAnswer(Answer answer){
 		try {
 			answerService.update(answer);
-			return MsgResponse.success("修改成功！", null);
+			return MsgResponse.success("修改答卷答案成功！", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
@@ -49,7 +52,7 @@ public class AnswerController {
 			// 调用service层代码删除学生信息
 			answerService.deleteById(id);
 			// 如果删除成功返回成功信息
-			return MsgResponse.success("删除成功！", null);
+			return MsgResponse.success("删除答卷成功！", null);
 		} catch (Exception e) {
 			// 先打印错误信息，让后台开发者知道问题所在；返回错误信息，让前端开发者知道错误所在
 			e.printStackTrace();
@@ -59,25 +62,25 @@ public class AnswerController {
 		
 	//http://127.0.0.1:8080/student/findAllAnswer
 	@GetMapping("findAllAnswer")
-	public List<Answer> findAllAnswer(){
+	public MsgResponse findAllAnswer(){
 			
 		try {
 			List<Answer> list = answerService.findAll();
-			return list;
+			return MsgResponse.success("查询答卷成功！", list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			return MsgResponse.error(e.getMessage());
 		}
 	}
 	@GetMapping("findAnswerById")
-	public Answer findAnswerById(long id){
+	public MsgResponse findAnswerById(long id){
 		try {
 			Answer answer = answerService.findById(id);
-			return answer;
+			return MsgResponse.success("查询答卷成功！", answer);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return MsgResponse.error(e.getMessage());
 		}
 	}
 }

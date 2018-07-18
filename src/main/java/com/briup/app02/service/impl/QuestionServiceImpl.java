@@ -7,13 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.briup.app02.bean.Question;
 import com.briup.app02.dao.QuestionMapper;
+import com.briup.app02.dao.extend.QuestionVMMapper;
 import com.briup.app02.service.IQuestionService;
+import com.briup.app02.vm.QuestionVM;
 
 @Service
 public class QuestionServiceImpl implements IQuestionService{
 
 	@Autowired
 	private QuestionMapper questionMapper;
+	@Autowired
+	private QuestionVMMapper questionVMMapper;
 	
 
 	@Override
@@ -23,6 +27,11 @@ public class QuestionServiceImpl implements IQuestionService{
 		return list;
 	}
 
+	@Override
+	public List<QuestionVM> findAllQuestionVM() throws Exception {
+		List<QuestionVM> list = questionVMMapper.findAllQuestionVM();
+		return list;
+	}
 
 	@Override
 	public Question findById(long id) throws Exception{
