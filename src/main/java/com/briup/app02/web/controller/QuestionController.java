@@ -1,4 +1,4 @@
-package com.briup.app02.web.controller;
+ package com.briup.app02.web.controller;
 
 import java.util.List;
 
@@ -24,11 +24,15 @@ public class QuestionController {
 	@Autowired
 	private IQuestionService questionService;
 
+	@ApiOperation(value="保存问题"
+						,notes="保存问题的同时还应该保存选项,问题id,选项id,选项中的外键question_id也不必输入")
 	@PostMapping("saveQuestion")
-	public MsgResponse saveQuestion(Question question) {
+	public MsgResponse saveQuestion(QuestionVM questionVM) {
 		try {
-			questionService.save(question);
-			return MsgResponse.success("添加问题信息成功！", null);
+			//调用业务逻辑层方法完成保存
+			System.out.println("======"+questionVM);
+			questionService.saveQuestion(questionVM);
+			return MsgResponse.success("保存成功", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());

@@ -13,6 +13,8 @@ public interface IQuestionService {
 	
 	Question findById(long id) throws Exception;
 	
+	void saveQuestion(QuestionVM questionVM) throws Exception;
+	
 	void save(Question question) throws Exception;
 	
 	void update(Question question) throws Exception;

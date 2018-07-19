@@ -13,6 +13,7 @@ import com.briup.app02.service.IGradeService;
 import com.briup.app02.util.MsgResponse;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(description="年级相关接口")
 @RestController
@@ -22,6 +23,7 @@ public class GradeController {
 	@Autowired
 	private IGradeService gradeService;
 
+	@ApiOperation(value="添加年级信息",notes="id不用填")
 	@PostMapping("saveGrade")
 	public MsgResponse saveStudent(Grade grade) {
 		try {
@@ -33,6 +35,7 @@ public class GradeController {
 		}
 	}
 
+	@ApiOperation(value="修改课程信息",notes="通过id修改课程信息")
 	@PostMapping("updateGrade")
 	public MsgResponse updateGrade(Grade grade) {
 		try {

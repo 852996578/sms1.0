@@ -13,8 +13,9 @@ import com.briup.app02.service.IStudentService;
 import com.briup.app02.util.MsgResponse;
 
 import io.swagger.annotations.Api;
+import springfox.documentation.annotations.ApiIgnore;
 
-
+@ApiIgnore
 @Api(description="学生相关接口")
 @RestController
 @RequestMapping("/student")

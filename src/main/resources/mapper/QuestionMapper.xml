@@ -16,13 +16,13 @@
   
   <!-- 保存学生信息 -->
   <insert id="save" parameterType="com.briup.app02.bean.Question">
-  	insert into poll_question values(null,#{name},#{questiontype},#{questionnaire_id})
+  	insert into poll_question values(null,#{name},#{questiontype})
   </insert>
   
   <!-- 修改学生信息 -->
   <update id="update" parameterType="com.briup.app02.bean.Question">
   update poll_question 
-  set name = #{name} ,questiontype = #{questiontype} ,questionnaire_id = #{questionnaire_id}
+  set name = #{name} ,questiontype = #{questiontype} 
   where id = #{id}
   </update>
   

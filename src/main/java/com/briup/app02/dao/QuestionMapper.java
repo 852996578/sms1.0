@@ -13,10 +13,10 @@ public interface QuestionMapper {
 	Question findById(long id);
 			
 	//保存问题信息
-	void save(Question option);
+	void save(Question question);
 			
 	//修改问题信息
-	void update(Question option);
+	void update(Question question);
 			
 	//删除问题信息
 	void deleteById(long id);

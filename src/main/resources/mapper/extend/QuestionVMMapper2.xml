@@ -6,7 +6,7 @@
 
   <!-- 查询所有问题信息 -->
   <select id="findAllQuestionVM" resultMap="QuestionVMResultMap">
-    select * from poll_clazz
+    select * from poll_question
   </select>
   
   <resultMap type="com.briup.app02.vm.QuestionVM" id="QuestionVMResultMap">

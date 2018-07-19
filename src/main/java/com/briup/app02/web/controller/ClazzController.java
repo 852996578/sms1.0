@@ -23,7 +23,8 @@ public class ClazzController {
 	// 注入studentService的实例
 	@Autowired
 	private IClazzService clazzService;
-
+	
+	@ApiOperation(value="添加班级信息",notes="id不用填")
 	@PostMapping("saveClazz")
 	public MsgResponse saveClazz(Clazz clazz) {
 		try {
@@ -35,6 +36,7 @@ public class ClazzController {
 		}
 	}
 
+	@ApiOperation(value="修改班级信息",notes="通过班级id修改其信息")
 	@PostMapping("updateClazz")
 	public MsgResponse updateClazz(Clazz clazz) {
 		try {
@@ -47,6 +49,7 @@ public class ClazzController {
 
 	}
 
+	@ApiOperation(value="删除班级信息",notes="通过id删除班级信息")
 	@GetMapping("deleteClazzById")
 	public MsgResponse deleteClazzById(long id) {
 		try {
@@ -92,7 +95,7 @@ public class ClazzController {
 		}
 	}
 
-	
+	@ApiOperation(value="查询某个班级信息",notes="通过id查询某个班级信息")
 	@GetMapping("findClazzById")
 	public MsgResponse findClazzById(long id) {
 		try {

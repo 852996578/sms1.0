@@ -13,6 +13,7 @@ import com.briup.app02.service.ICourseService;
 import com.briup.app02.util.MsgResponse;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(description="课程相关接口")
 @RestController
@@ -22,6 +23,7 @@ public class CourseController {
 	@Autowired
 	private ICourseService courseService;
 
+	@ApiOperation(value="添加课程信息",notes="id不用填")
 	@PostMapping("saveCourse")
 	public MsgResponse saveCourse(Course course) {
 		try {
@@ -33,6 +35,7 @@ public class CourseController {
 		}
 	}
 
+	@ApiOperation(value="修改课程信息",notes="通过id修改课程信息")
 	@PostMapping("updateCourse")
 	public MsgResponse updateCourse(Course course) {
 		try {
@@ -45,6 +48,7 @@ public class CourseController {
 
 	}
 
+	@ApiOperation(value="删除课程信息",notes="通过id删除信息")
 	@GetMapping("deleteCourseById")
 	public MsgResponse deleteCourseById(long id) {
 		try {
@@ -60,6 +64,7 @@ public class CourseController {
 	}
 
 	// http://127.0.0.1:8080/course/findAllCourse
+	@ApiOperation(value="查询课程信息",notes="查询全部课信息")
 	@GetMapping("findAllCourse")
 	public MsgResponse findAllCourse() {
 
@@ -73,6 +78,7 @@ public class CourseController {
 		}
 	}
 
+	@ApiOperation(value="查询课程信息",notes="通过id查询某个课程信息")
 	@GetMapping("findCourseById")
 	public MsgResponse findCourseById(long id) {
 		try {

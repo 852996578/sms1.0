@@ -13,6 +13,7 @@ import com.briup.app02.service.IAnswerService;
 import com.briup.app02.util.MsgResponse;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(description="答案相关接口")
 @RestController
@@ -21,7 +22,8 @@ public class AnswerController {
 	//注入studentService的实例
 	@Autowired
 	private IAnswerService answerService;
-		
+	
+	@ApiOperation(value="添加答案信息",notes="id不用填")
 	@PostMapping("saveAnswer")
 	public MsgResponse saveAnswer(Answer answer){
 		try {
@@ -33,7 +35,7 @@ public class AnswerController {
 		}
 	}
 		
-		
+	@ApiOperation(value="修改答案信息",notes="通过id修改信息")	
 	@PostMapping("updateAnswer")
 	public MsgResponse updateAnswer(Answer answer){
 		try {
@@ -46,6 +48,7 @@ public class AnswerController {
 			
 	}	
 		
+	@ApiOperation(value="删除答案信息",notes="通过id删除答案信息")
 	@GetMapping("deleteAnswerById")
 	public MsgResponse deleteAnswerById(long id){
 		try {
@@ -61,6 +64,7 @@ public class AnswerController {
 	}
 		
 	//http://127.0.0.1:8080/student/findAllAnswer
+	@ApiOperation(value="查询答案信息",notes="查询某个答案")
 	@GetMapping("findAllAnswer")
 	public MsgResponse findAllAnswer(){
 			
@@ -73,6 +77,8 @@ public class AnswerController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+	
+	@ApiOperation(value="添加班级信息",notes="id不用填")
 	@GetMapping("findAnswerById")
 	public MsgResponse findAnswerById(long id){
 		try {
